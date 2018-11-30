@@ -1,0 +1,68 @@
+simName: sh_77_openloop
+
+pupilSize: 128
+nGS: 1
+nDM: 1
+nSci: 1
+nIters: 30
+loopTime: 0.012
+threads: 1
+
+verbosity: 2
+
+Atmosphere:
+   scrnNo: 1
+   scrnHeights: [0]
+   scrnStrengths: [1]
+   windDirs: [180]
+   windSpeeds: [10]
+   wholeScrnSize: 512
+   r0: 0.16
+#   scrnNames: ['./scrns_1024/scrn_20181025_1024_10.fits']
+
+Telescope:
+   telDiam: 4.2
+   obsDiam: 1.2
+   mask: circle
+
+WFS:
+  0:
+    type: ShackHartmann
+    GSPosition: [0, 0]
+    GSHeight: 0
+    GSMag: 6
+    nxSubaps: 7
+    pxlsPerSubap: 16
+    subapFOV: 4.8
+    wavelength: 600e-9
+    eReadNoise: 1
+    photonNoise: False
+#    removeTT: True  
+
+DM:
+#  0:
+#    type: TT
+#    closed: False
+#    iMatValue: 0.25
+#    gain: 1
+
+  0:
+    type: Piezo
+    closed: False
+    nxActuators: 8
+    iMatValue: 500
+    gain: 1
+    
+Reconstructor:
+    type: MVM
+    svdConditioning: 0.15  #0.15 for Piezo
+    gain: 1
+    imat_noise: True
+    
+Science:
+  0:
+    position: [0, 0]
+    FOV: 1.
+    wavelength: 1.65e-6
+    pxls: 64
+
